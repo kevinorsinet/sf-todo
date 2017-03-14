@@ -153,15 +153,42 @@ class TodoController extends Controller
     }
 
 
-    public function restore(){
+    public function restoreAction(Request $request){
+    $todo = $this
+            ->getDoctrine()
+            ->getRepository('AppBundle:Todo')
+            ->find($request->attributes->get('id'));
 
+    $todo->setTrashed(false);  
+    $em = $this->getDoctrine()->getManager();
+            $em->persist($todo);
+            $em->flush();
+
+    return $this->redirectToRoute('list_trashed');
 
     }
 
 
-    public function remove(){
+    public function removeAction(Request $request){
+
+
+        $todo = $this
+            ->getDoctrine()
+            ->getRepository('AppBundle:Todo')
+            ->find($request->attributes->get('id'));
+
+        if (!$todo) {
+        throw $this->createNotFoundException('todo non trouvé ');
+        }
+
+        $em = $this->getDoctrine()->getManager();
+            $em->remove($todo);
+            $em->flush();
+       
+        return $this->redirectToRoute('list_trashed');
+
+
 
     }
-
 
 }
