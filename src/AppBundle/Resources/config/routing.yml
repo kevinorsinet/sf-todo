@@ -1,0 +1,29 @@
+todo_index:
+    path: /
+    defaults: { _controller: AppBundle:Todo:index }
+
+todo_add:
+    path: /add
+    defaults: { _controller: AppBundle:Todo:add }
+
+todo_edit:
+    path: /{id}/edit
+    defaults: { _controller: AppBundle:Todo:edit }
+
+todo_trash:
+    path: /{id}/trash
+    defaults: { _controller: AppBundle:Todo:trash }
+
+list_trashed:
+    path: /trashed
+    defaults: { _controller: AppBundle:Todo:listTrashed }
+
+todo_restore:
+    path: /{id}/restore
+    defaults: { _controller: AppBundle:Todo:restore }
+
+todo_remove:
+    path: /{id}/remove
+    defaults: { _controller: AppBundle:Todo:remove }
+    
+

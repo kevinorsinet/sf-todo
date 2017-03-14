@@ -1,0 +1,34 @@
+
+{% extends "AppBundle:Todo:index.html.twig" %}
+
+{% block content %}
+
+{% for todos in todo %}
+<div class="row todo">
+    <div class="col-sm-11">
+        <div class="panel panel-default">
+            <div class="panel-body">
+            
+                <em>{{ todos.date|date }}</em>
+                {{ todos.content }}
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-1">
+        <p>
+
+
+            {# Bouton de modification #}
+            <a href="{{ path('todo_edit',{'id': todos.id}) }}" class="btn btn-xs btn-warning">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+            {# Bouton d'archivage #}
+            <a href="{{ path('todo_trash', {'id': todos.id}) }}" class="btn btn-xs btn-danger">
+                <span class="glyphicon glyphicon-trash"></span>
+            </a>
+        </p>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock content %}
